@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+{% endblock %}
+
+{% block extend_nav %} 
+
+<ul class="sidenav">
+  <li><a class="active" href="{% url 'main:index' %}">Demo Home</a></li>
+  <li><a href="javascript:void(0)" onclick="alert('Please add addresses')">Demo Results</a></li>
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h3>Django Fixer API Demo - Currency Selection</h3>
+
+<div class="container">
+
+  <form id="apiform" method="POST" action="/">
+    {% csrf_token %}
+
+
+    <label for="base">Base Currency (Defaults to EUR in free version)</label>
+    <select name="base" id="base">
+      <option selected value="EUR">Euro</option>
+
+    </select>
+
+    <label for="currency">Select conversion currencies</label>
+    <select name="symbols" id="symbols" multiple>
+      <option selected value="">Select multiple</option>
+      {% for key, value in symbols.items %}
+      <option value="{{key}}">{{value|title}}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+
+
+
+</div>
+
+{% endblock %}
+
+
+{% block extend_footer %}
+
+{% endblock %}

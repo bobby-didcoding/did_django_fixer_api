@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+<script src='https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}'></script>
+
+
+
+{% endblock %}
+
+{% block extend_nav %} 
+
+<ul class="sidenav">
+  <li><a href="{% url 'main:index' %}">Demo Home</a></li>
+  <li><a href="javascript:void(0)" class="active">Demo Results</a></li>
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h3 id="map">Django Fixer API Demo - Currency Conversion Results</h3>
+
+<div class="container">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Base Currency</td>
+        <td>{{conversion.base}}</td>      
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td>{{conversion.date}}</td>      
+      </tr>
+      {% for key, value in conversion.rates.items %}
+      <tr>
+        <td>{{key}}</td>
+        <td>{{value}}</td>      
+      </tr>
+      {% endfor %}
+      
+
+    </tbody>
+  </table>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block extend_footer %}
+
+
+{% endblock %}
